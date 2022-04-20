@@ -5,10 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 from advertisements.filters import AdvertisementFilter
 from advertisements.models import Advertisement
 from advertisements.serializers import AdvertisementSerializer
-from api_with_restrictions.permissioms import IsOwner
-
-
-
+from api_with_restrictions.permissions import IsOwner
 
 
 class AdvertisementViewSet(ModelViewSet):
@@ -18,6 +15,6 @@ class AdvertisementViewSet(ModelViewSet):
 
     def get_permissions(self):
         print(self.action)
-        if self.action in ["create", "update", "partial_update","destroy"]:
+        if self.action in ["create", "update", "partial_update", "destroy"]:
             return [IsAuthenticated(), IsOwner()]
         return []
